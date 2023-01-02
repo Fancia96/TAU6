@@ -5,6 +5,7 @@ import java.util.List;
 public class MockSystemNotesServiceImpl implements NotesStorage {
 
     private List<Note> noteList;
+    private String string;
 
     @Override
     public void add(Note note) {
