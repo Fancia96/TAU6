@@ -1,0 +1,24 @@
+name: GitHub badge
+run-name: ${{ github.actor }} is creating a badge out GitHub Actions 🚀
+on: [push]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - run: npm install
+    - run: npm run build
+    - run: npm run coverage
+    - run: npm i coverage-badges-cli -g
+    - run: coverage-badges --output coverage/badges.svg
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GIST_SECRET }}
+        publish_dir: ./coverage
