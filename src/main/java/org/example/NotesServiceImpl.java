@@ -28,7 +28,7 @@ public class NotesServiceImpl implements NotesService {
         storageService.clear();
     }
 
-    private NotesServiceImpl(final NotesStorage storageService) {
+    public NotesServiceImpl(final NotesStorage storageService) {
         this.storageService = storageService;
     }
     private final NotesStorage storageService;

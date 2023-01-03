@@ -1,3 +1,5 @@
+import org.example.Note;
+import org.example.NotesServiceImpl;
 import org.junit.jupiter.api.*;
 
 import java.util.logging.Logger;
@@ -6,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class NotesServiceImplTest {
 
-    public String stringOperations;
+    public NotesServiceImpl notesServiceImpl;
     static Logger log = Logger.getLogger(String.class.getName());
 
 
@@ -23,19 +25,19 @@ public class NotesServiceImplTest {
     @BeforeEach
     void setUp() throws Exception {
         log.info("BeforeEach");
-        stringOperations = new String("");
+        notesServiceImpl = new NotesServiceImpl(null);
     }
 
     @AfterEach
     void tearDown() throws Exception {
         log.info("AfterEach");
-        stringOperations = null;
+        notesServiceImpl = null;
     }
 
 
     @Test
     void testIsPalindromeEmptyString() {
-        assertTrue(true);
+        assertEquals(notesServiceImpl.getClass().toString(), "class org.example.NotesServiceImpl");
     }
 //
 //    @Test
