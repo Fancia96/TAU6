@@ -27,7 +27,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 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
-        filename: TAU6__${{ env.BRANCH }}.json
+        filename: TAU6_coverage.json
         label: Test Coverage
         message: ${{ env.COVERAGE }}
         color: green
