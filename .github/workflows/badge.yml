@@ -32,3 +32,16 @@ jobs:
         message: ${{ env.COVERAGE }}
         color: green
         namedLogo: jest
+    - name: Get the Numbers
+      run: echo "ANSWER=42" >> $GITHUB_ENV
+    - name: Create the Badge
+      uses: schneegans/dynamic-badges-action@v1.6.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: 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
+        filename: answer.json
+        label: The Answer
+        message: is ${{ env.ANSWER }}
+        valColorRange: ${{ env.ANSWER }}
+        maxColorRange: 100
+        minColorRange: 0
