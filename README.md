@@ -7,3 +7,5 @@
 # Code coverage 
 ![coverage](.github/badges/jacoco.svg)
 ![branches coverage](.github/badges/branches.svg)
+
+![example workflow](https://github.com/Fancia96/TAU6/target/site/jacoco/index.html)
