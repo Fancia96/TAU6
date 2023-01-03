@@ -13,7 +13,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
-        distribution: 'temurin'
+        distribution: 'adopt'
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
@@ -23,7 +23,7 @@ jobs:
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
       
     - name: Get Coverage for badge
-      uses: schneegans/dynamic-badges-action@v1.0.0
+      uses: schneegans/dynamic-badges-action@v1.6.0
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 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
