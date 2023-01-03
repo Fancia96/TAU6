@@ -3,44 +3,22 @@ run-name: ${{ github.actor }} is creating a badge out GitHub Actions 🚀
 on: [push]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  build-deploy:
+    runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
-        java-version: '11'
-        distribution: 'adopt'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+        node-version: 14
 
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
-      
-    - name: Install dependencies
-      run: |
-        sudo apt-get update 2> /dev/null || true
-        sudo apt-get install -y git 
-        sudo apt-get install -y wget
-        url="$(sudo wget -qO- https://api.github.com/repos/github/hub/releases/latest | tr '"' '\n' | grep '.*/download/.*/hub-linux-amd64-.*.tgz')"
-        sudo wget -qO- "$url" | sudo tar -xzvf- -C /usr/bin --strip-components=2 --wildcards "*/bin/hub"
+    - run: npm install
+    - run: npm run build
+    - run: npm run coverage
+    - run: npm i coverage-badges-cli -g
+    - run: coverage-badges --output coverage/badges.svg
 
-
-    - name: Get the Numbers
-      run: echo "ANSWER=42" >> $GITHUB_ENV
-    - name: Create the Badge
-      uses: schneegans/dynamic-badges-action@v1.6.0
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        auth: ${{ secrets.GIST_SECRET }}
-        gistID: d650f5301cbcaf9872fa66294b172667
-        filename: answer.json
-        label: The Answer
-        message: is ${{ env.ANSWER }}
-        valColorRange: ${{ env.ANSWER }}
-        maxColorRange: 100
-        minColorRange: 0
+        github_token: ${{ secrets.GIST_SECRET }}
+        publish_dir: ./coverage
