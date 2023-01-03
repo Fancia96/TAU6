@@ -3,3 +3,4 @@
 
 # Code coverage 
 ![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Fancia96/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/raw/TAU6_coverage.json)
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Fancia96/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/raw/answer.json)
