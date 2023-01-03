@@ -4,7 +4,8 @@ import org.junit.jupiter.api.*;
 
 import java.util.logging.Logger;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class NotesServiceImplTest {
 
