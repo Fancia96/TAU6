@@ -91,6 +91,7 @@
                         <phase>test</phase>
                         <goals>
                             <goal>report</goal>
+
                         </goals>
                         <configuration>
                             <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
