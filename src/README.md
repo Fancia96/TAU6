@@ -5,5 +5,5 @@
 ![example workflow](https://github.com/Fancia96/TAU6/actions/workflows/badge.yml/badge.svg)
 
 # Code coverage 
-![coverage](TAU6/.github/badges/jacoco.svg)
-![branches coverage](TAU6/.github/badges/branches.svg)
+![coverage](https://github.com/Fancia96/TAU6/.github/badges/jacoco.svg)
+![branches coverage](https://github.com/Fancia96/TAU6/.github/badges/branches.svg)
