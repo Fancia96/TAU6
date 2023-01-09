@@ -14,7 +14,6 @@ public class MockSystemNotesService implements NotesStorage {
     @Override
     public void add(Note note) {
         map.put(note.getName(), note);
-        System.out.println(map);
     }
 
     @Override
@@ -45,6 +44,14 @@ public class MockSystemNotesService implements NotesStorage {
                     return true;
                 }
             }
+        }
+        return false;
+    }
+
+    public boolean checkIfStorageIsNotEmpty() {
+
+        if (map.size() != 0) {
+            return true;
         }
         return false;
     }

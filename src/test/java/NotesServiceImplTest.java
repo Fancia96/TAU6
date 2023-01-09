@@ -3,6 +3,7 @@ import org.example.Note;
 import org.example.NotesServiceImpl;
 import org.junit.jupiter.api.*;
 
+import java.util.Collection;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,16 +63,53 @@ public class NotesServiceImplTest {
 
         assertFalse(env.checkIfNoteAdded(note2));
     }
-//
-//
-//    @Test
-//    void testIsPalindromeWithTwoSpaces() {
-//        assertTrue(stringOperations.isPalindrome("a bcb a"));
-//    }
 
-//    @Test
-//    void testConcatTwoZeroLenghtStrings() {
-//        assertEquals( null , stringOperations.concat("", ""));
-//    }
+    @Test
+    void testClearingStorage() {
+        Note note = new Note("note 1", 44.5F);
+        Note note2 = new Note("note 1", 43.5F);
+        notesServiceImpl.add(note);
+        notesServiceImpl.add(note2);
+
+        notesServiceImpl.clear();
+
+        assertFalse(env.checkIfStorageIsNotEmpty());
+    }
+
+    @Test
+    void testNotClearingStorage() {
+        Note note = new Note("note 1", 44.5F);
+        Note note2 = new Note("note 1", 43.5F);
+        notesServiceImpl.add(note);
+        notesServiceImpl.add(note2);
+
+        assertTrue(env.checkIfStorageIsNotEmpty());
+    }
+
+    @Test
+    void testCheckAverageOfNotes() {
+        Note note = new Note("note 1", 2.5F);
+        Note note2 = new Note("note 1", 3.5F);
+        Note note3 = new Note("note 1", 0F);
+        Note note4 = new Note("note 2", 2.5F);
+        notesServiceImpl.add(note);
+        notesServiceImpl.add(note2);
+        notesServiceImpl.add(note3);
+        notesServiceImpl.add(note4);
+
+        assertEquals(notesServiceImpl.averageOf("note 1"), 2F);
+    }
+
+    @Test
+    void testCheckAverageOfNotesNoWrites() {
+        Note note = new Note("note 1", 2.5F);
+        Note note2 = new Note("note 1", 3.5F);
+        Note note3 = new Note("note 1", 0F);
+        notesServiceImpl.add(note);
+        notesServiceImpl.add(note2);
+        notesServiceImpl.add(note3);
+
+        assertEquals(notesServiceImpl.averageOf("note 2"), 0.0f/0);
+    }
 
 }
