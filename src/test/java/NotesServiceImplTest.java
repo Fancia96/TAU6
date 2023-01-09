@@ -1,6 +1,7 @@
 import org.example.MockSystemNotesService;
 import org.example.Note;
 import org.example.NotesServiceImpl;
+import org.example.NotesStorage;
 import org.junit.jupiter.api.*;
 
 import java.util.Collection;
@@ -112,4 +113,12 @@ public class NotesServiceImplTest {
         assertEquals(notesServiceImpl.averageOf("note 2"), 0.0f/0);
     }
 
+    @Test
+    void testCreateWith() {
+        notesServiceImpl = NotesServiceImpl.createWith(env);
+        Note note = new Note("note 1", 2.5F);
+        notesServiceImpl.add(note);
+
+        assertTrue(env.checkIfNoteAdded(note));
+    }
 }
